@@ -12,7 +12,10 @@ import { Logger } from "./types.ts";
  * import { Application } from "https://deno.land/x/oak/mod.ts"
  * 
  * const app = new App();
- * app.use(anyExceptionFilter(console));
+ * app.use(anyExceptionFilter({
+ *  logger: console,
+ *  isHeaderResponseTime: true,
+ * }));
  * 
  * // other middleware
  * 
