@@ -8,4 +8,4 @@ export type { Redis } from "./deps.ts";
 
 export * from './src/middleware/exception.ts';
 
-export const version = '0.0.3';
+export const version = '0.0.4';
