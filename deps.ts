@@ -15,3 +15,9 @@ export {
 
 export { connect } from "https://deno.land/x/redis@v0.24.0/mod.ts";
 export type { Redis, RedisConnectOptions } from "https://deno.land/x/redis@v0.24.0/mod.ts";
+
+export type {
+  Context,
+  Middleware,
+  RouterMiddleware,
+} from "https://deno.land/x/oak@v9.0.0/mod.ts";
