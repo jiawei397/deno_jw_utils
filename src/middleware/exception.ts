@@ -53,5 +53,3 @@ export const anyExceptionFilter = (options: {
 
     return middleware;
 }
-
-anyExceptionFilter();
