@@ -1,13 +1,13 @@
 
-import { connect, yellow, Redis } from "../deps.ts";
+import { connect, yellow, Redis, RedisConnectOptions } from "../deps.ts";
 import { stringify, jsonParse } from "./utils.ts";
 
 
-export class CacheService {
-    db: string;
+export class RedisService {
+    db: RedisConnectOptions;
     client!: Redis;
 
-    constructor(db: any) {
+    constructor(db: RedisConnectOptions) {
         this.db = db;
         connect(db).then((client) => {
             this.client = client;
