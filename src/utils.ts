@@ -23,7 +23,6 @@ export class Cache extends Map {
   }
 }
 
-
 export function makeID(length: number): string {
   let result = "";
   const characters =
@@ -56,7 +55,7 @@ export function stringify(data: any): string {
     return JSON.stringify(data);
   } catch (err) {
     if (isDebug()) {
-      console.error('stringify error', data);
+      console.error("stringify error", data);
       console.error(err);
     }
     return data;
@@ -68,7 +67,7 @@ export function jsonParse(str: string): any {
     return JSON.parse(str);
   } catch (err) {
     if (isDebug()) {
-      console.error('jsonParse error', str);
+      console.error("jsonParse error", str);
       console.error(err);
     }
     return str;
