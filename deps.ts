@@ -30,4 +30,6 @@ export {
 
 export type { CanActivate } from "https://deno.land/x/oak_nest@v0.1.0/mod.ts";
 
-export { BaseAjax } from "https://deno.land/x/jw_fetch@v0.1.9/mod.ts";
+export { BaseAjax } from "https://deno.land/x/jw_fetch@v0.1.10/mod.ts";
+
+export type { AjaxConfig } from "https://deno.land/x/jw_fetch@v0.1.10/mod.ts";
