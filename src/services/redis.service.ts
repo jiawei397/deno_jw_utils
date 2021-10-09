@@ -1,5 +1,5 @@
-import { connect, Redis, RedisConnectOptions, yellow } from "../deps.ts";
-import { jsonParse, stringify } from "./tools/utils.ts";
+import { connect, Redis, RedisConnectOptions, yellow } from "../../deps.ts";
+import { jsonParse, stringify } from "../tools/utils.ts";
 
 export class RedisService {
   db: RedisConnectOptions;
