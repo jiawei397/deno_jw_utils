@@ -31,7 +31,7 @@ export function SSOGuard(options: {
         async getSSO(context: Context) {
             const request: any = context.request;
             const headers = request.headers;
-            const userInfo = await ajax.get("/api/user/userinfo", null, {
+            const userInfo = await ajax.get("/user/userinfo", null, {
                 baseURL: ssoApi || Deno.env.get("ssoApi"),
                 headers: {
                     cookie: headers.get("cookie") || "",
