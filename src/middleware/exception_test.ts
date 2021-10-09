@@ -7,7 +7,6 @@ import {
   beforeEach,
   describe,
   it,
-  test,
 } from "../../test_deps.ts";
 import { anyExceptionFilter, get404Message } from "./exception.ts";
 
@@ -95,7 +94,7 @@ describe("status", () => {
     } as unknown as Context;
 
     await anyExceptionFilter({
-      isDisableFormat404: true
+      isDisableFormat404: true,
     })(mockContext, mockNext);
     assertEquals(mockContext.response.status, 404);
     assertEquals(mockContext.response.body, undefined);

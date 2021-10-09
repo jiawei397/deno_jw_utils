@@ -1,6 +1,6 @@
 // Copyright 2021 the oak authors. All rights reserved. MIT license.
 import { Context, Middleware } from "../../deps.ts";
-import { Logger } from "./types.ts";
+import { Logger } from "../types.ts";
 
 /** A middleware that will deal the exceptions when called, and set the response time for other middleware in
  * milliseconds as `X-Response-Time` which can be used for diagnostics and other
@@ -23,45 +23,46 @@ import { Logger } from "./types.ts";
  * ```
  */
 export const anyExceptionFilter = (options: {
-    logger?: Logger;
-    isHeaderResponseTime?: boolean;
-    isDisableFormat404?: boolean;
+  logger?: Logger;
+  isHeaderResponseTime?: boolean;
+  isDisableFormat404?: boolean;
 } = {}) => {
-    const { logger = console, isHeaderResponseTime, isDisableFormat404 } = options;
-    const middleware: Middleware = async function (
-        ctx: Context,
-        next: () => Promise<unknown>,
-    ) {
-        const start = Date.now();
-        try {
-            await next();
-            // 在这里可以很方便地拦截处理响应给前台的数据
-            if (!isDisableFormat404) {
-                if (ctx.response.body === undefined && ctx.response.status === 404) {
-                    ctx.response.body = get404Message();
-                    ctx.response.status = 404; // TODO 这里需要重新赋一下，否则状态码变成200了
-                }
-            }
-        } catch (err) {
-            logger.error(err);
-            ctx.response.status = err.status || 500;
-            ctx.response.body = err.message;
-        } finally {
-            const ms = Date.now() - start;
-            logger.debug(
-                `${ctx.request.method} ${ctx.request.url} [${ctx.response.status}] - ${ms}ms`,
-            );
-            if (isHeaderResponseTime) {
-                ctx.response.headers.set("X-Response-Time", `${ms}ms`);
-            }
+  const { logger = console, isHeaderResponseTime, isDisableFormat404 } =
+    options;
+  const middleware: Middleware = async function (
+    ctx: Context,
+    next: () => Promise<unknown>,
+  ) {
+    const start = Date.now();
+    try {
+      await next();
+      // 在这里可以很方便地拦截处理响应给前台的数据
+      if (!isDisableFormat404) {
+        if (ctx.response.body === undefined && ctx.response.status === 404) {
+          ctx.response.body = get404Message();
+          ctx.response.status = 404; // TODO 这里需要重新赋一下，否则状态码变成200了
         }
-    };
+      }
+    } catch (err) {
+      logger.error(err);
+      ctx.response.status = err.status || 500;
+      ctx.response.body = err.message;
+    } finally {
+      const ms = Date.now() - start;
+      logger.debug(
+        `${ctx.request.method} ${ctx.request.url} [${ctx.response.status}] - ${ms}ms`,
+      );
+      if (isHeaderResponseTime) {
+        ctx.response.headers.set("X-Response-Time", `${ms}ms`);
+      }
+    }
+  };
 
-    return middleware;
+  return middleware;
 };
 
 export function get404Message() {
-    return `                
+  return `                
     <!DOCTYPE html>
     <html>
     <head>
