@@ -18,17 +18,15 @@ export type {
   RedisConnectOptions,
 } from "https://deno.land/x/redis@v0.24.0/mod.ts";
 
+// oak_nest的版本由这里控制
+export * from "https://deno.land/x/oak_nest@v0.1.3/mod.ts";
+
 export type {
+  CanActivate,
   Context,
   Middleware,
   RouterMiddleware,
-} from "https://deno.land/x/oak@v9.0.0/mod.ts";
-
-export {
-  UnauthorizedException,
-} from "https://deno.land/x/oak_nest@v0.1.0/mod.ts";
-
-export type { CanActivate } from "https://deno.land/x/oak_nest@v0.1.0/mod.ts";
+} from "https://deno.land/x/oak_nest@v0.1.3/mod.ts";
 
 export { BaseAjax } from "https://deno.land/x/jw_fetch@v0.1.11/mod.ts";
 
