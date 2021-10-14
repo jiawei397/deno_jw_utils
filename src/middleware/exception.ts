@@ -44,7 +44,7 @@ export const anyExceptionFilter = (options: {
         }
       }
     } catch (err) {
-      logger.error(err);
+      logger.error("anyExceptionFilter", err);
       ctx.response.status = err.status || 500;
       ctx.response.body = err.message;
     } finally {
