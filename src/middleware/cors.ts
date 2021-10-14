@@ -2,7 +2,7 @@
 import { Context, Middleware, Request, Response, vary } from "../../deps.ts";
 import { CORSHeaders, CorsOptions, MultiCORSHeaders } from "../types.ts";
 
-export const defaults = {
+export const defaults: CorsOptions = {
   origin: true, // "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   preflightContinue: false,
@@ -226,6 +226,7 @@ export function CORS(options?: boolean | CorsOptions) {
     const corsOptions: CorsOptions = Object.assign({}, defaults, options);
     if (!options || options === true) {
       corsOptions.origin = true;
+      corsOptions.credentials = true;
     } else if (typeof options?.origin === "function") {
       const origin = options.origin(headers.get("origin")!);
       if (!origin) {
