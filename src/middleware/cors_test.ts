@@ -95,6 +95,51 @@ describe("cors", () => {
     });
   });
 
+  describe("origin is Array", () => {
+    it("contain the origin", async () => {
+      const origins = ["https://www.google.com", origin];
+      await CORS({
+        origin: origins,
+      })(mockContext, mockNext);
+      assertEquals(
+        mockContext.response.headers.get("Access-Control-Allow-Origin"),
+        origin,
+      );
+    });
+
+    it("not contain the origin", async () => {
+      const origins = ["https://www.google.com", "https://aa.com"];
+      await CORS({
+        origin: origins,
+      })(mockContext, mockNext);
+      assertEquals(
+        mockContext.response.headers.get("Access-Control-Allow-Origin"),
+        null,
+      );
+    });
+
+    it("origin is a RegExp right array", async () => {
+      const origins = [/google.com/, /baidu\.com/];
+      await CORS({
+        origin: origins,
+      })(mockContext, mockNext);
+      assertEquals(
+        mockContext.response.headers.get("Access-Control-Allow-Origin"),
+        origin,
+      );
+    });
+    it("origin is a RegExp error array", async () => {
+      const origins = [/google.com/, /aa\.com/];
+      await CORS({
+        origin: origins,
+      })(mockContext, mockNext);
+      assertEquals(
+        mockContext.response.headers.get("Access-Control-Allow-Origin"),
+        null,
+      );
+    });
+  });
+
   describe("origin is RegExp", () => {
     it("right", async () => {
       const reg = /baidu\.com/;
@@ -128,9 +173,19 @@ describe("cors", () => {
       );
     });
 
-    it("has params", async () => {
+    it("has params optionsSuccessStatus", async () => {
       await CORS({
         optionsSuccessStatus: 200,
+      })(mockContext, mockNext);
+      assertEquals(
+        mockContext.response.status,
+        200,
+      );
+    });
+
+    it("has params preflightContinue", async () => {
+      await CORS({
+        preflightContinue: true,
       })(mockContext, mockNext);
       assertEquals(
         mockContext.response.status,
