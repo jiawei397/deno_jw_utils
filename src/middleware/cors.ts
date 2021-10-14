@@ -157,11 +157,11 @@ function applyHeaders(headers: CORSHeaders, res: Response) {
   }
 }
 
-function cors(
+async function cors(
   options: CorsOptions,
   req: Request,
   res: Response,
-  next: () => void,
+  next: () => Promise<unknown>,
 ) {
   const headers: any[] = [];
   const method = req.method.toUpperCase();
@@ -177,7 +177,7 @@ function cors(
     applyHeaders(headers, res);
 
     if (options.preflightContinue) {
-      next();
+      await next();
     } else {
       // Safari (and potentially other browsers) need content-length 0,
       //   for 204 or they just hang waiting for a body
@@ -192,7 +192,7 @@ function cors(
     headers.push(configureCredentials(options));
     headers.push(configureExposedHeaders(options));
     applyHeaders(headers, res);
-    next();
+    await next();
   }
 }
 
@@ -218,8 +218,8 @@ export function CORS(options?: boolean | CorsOptions) {
     ctx: Context,
     next: () => Promise<unknown>,
   ) {
-    await next();
     if (options === false) { // not need cors
+      await next();
       return;
     }
     const headers = ctx.request.headers;
@@ -229,11 +229,11 @@ export function CORS(options?: boolean | CorsOptions) {
     } else if (typeof options?.origin === "function") {
       const origin = options.origin(headers.get("origin")!);
       if (!origin) {
-        return;
+        return next();
       }
       corsOptions.origin = origin;
     }
-    cors(corsOptions, ctx.request, ctx.response, next);
+    await cors(corsOptions, ctx.request, ctx.response, next);
   };
   return middleware;
 }
