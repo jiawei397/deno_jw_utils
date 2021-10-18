@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 import { connect, Redis, RedisConnectOptions, yellow } from "../../deps.ts";
 import { jsonParse, stringify } from "../tools/utils.ts";
 

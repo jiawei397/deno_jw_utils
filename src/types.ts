@@ -74,6 +74,7 @@ export interface CorsOptions {
 
 export interface CORSHeader {
   key: string;
+  // deno-lint-ignore no-explicit-any
   value: any;
 }
 

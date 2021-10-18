@@ -147,7 +147,7 @@ describe("status", () => {
     } as unknown as Context;
 
     mockNext = () => {
-      return new Promise<void>((resolve, reject) => {
+      return new Promise<void>((_resolve, reject) => {
         setTimeout(() => {
           reject({
             msg: "error message",
@@ -174,7 +174,7 @@ describe("status", () => {
     } as unknown as Context;
 
     mockNext = () => {
-      return new Promise<void>((resolve, reject) => {
+      return new Promise<void>((_resolve, reject) => {
         setTimeout(() => {
           reject("error");
         }, 0);

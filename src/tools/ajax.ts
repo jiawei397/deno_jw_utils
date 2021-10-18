@@ -3,6 +3,7 @@ import { md5 } from "./utils.ts";
 
 class Ajax extends BaseAjax {
   protected getUniqueKey(config: AjaxConfig) {
+    // deno-lint-ignore no-explicit-any
     const headers: any = config.headers;
     const key = (config.baseURL || "") + config.url + config.method +
       (config.data ? JSON.stringify(config.data) : "");
@@ -17,7 +18,7 @@ class Ajax extends BaseAjax {
   /**
    * 处理消息，具体实现可以覆盖此项
    */
-  protected handleMessage(msg: string) {
+  protected handleMessage(_msg: string) {
     // console.log("handleMessage", msg);
     // super.handleMessage(msg);
   }
@@ -25,7 +26,7 @@ class Ajax extends BaseAjax {
   /**
    * 处理错误请求
    */
-  protected handleErrorResponse(response: Response) {
+  protected handleErrorResponse(_response: Response) {
     // console.error(
     //     `HTTP error, status = ${response.status}, statusText = ${response.statusText}`,
     // );

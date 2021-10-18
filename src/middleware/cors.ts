@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 // Copyright 2021 the oak authors. All rights reserved. MIT license.
 import { Context, Middleware, Request, Response, vary } from "../../deps.ts";
 import { CORSHeaders, CorsOptions, MultiCORSHeaders } from "../types.ts";

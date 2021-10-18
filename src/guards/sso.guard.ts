@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 import { ajax } from "../tools/ajax.ts";
 import { CanActivate, Context, UnauthorizedException } from "../../deps.ts";
 import { Logger, SSOUserInfo } from "../types.ts";
