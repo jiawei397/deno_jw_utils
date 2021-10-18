@@ -1,3 +1,4 @@
+// deno-lint-ignore-file camelcase
 export type MsgCallback = (...msg: unknown[]) => unknown;
 
 export interface Logger {
