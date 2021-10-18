@@ -6,6 +6,8 @@ export * from "./src/guards/sso.guard.ts";
 
 export * from "./deps.ts";
 
+export * from "./src/decorators/logTime.ts";
+
 export type {
   CanActivate,
   Context,
