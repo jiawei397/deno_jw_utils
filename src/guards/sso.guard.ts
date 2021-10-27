@@ -51,6 +51,7 @@ export function SSOGuard(options: {
         },
         cacheTimeout,
       });
+      userInfo.id = userInfo.user_id + "";
       request.userInfo = userInfo;
       return userInfo;
     }
