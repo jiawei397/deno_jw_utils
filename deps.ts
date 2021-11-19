@@ -23,7 +23,6 @@ export * from "https://deno.land/x/oak_nest@v0.3.0/mod.ts";
 
 export type {
   CanActivate,
-  Context,
   Middleware,
   Request,
   RouterMiddleware,
