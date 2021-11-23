@@ -1,7 +1,7 @@
 // deno-lint-ignore-file no-explicit-any
 import { ajax } from "../tools/ajax.ts";
-import { CanActivate, Context, UnauthorizedException } from "../../deps.ts";
-import { Logger, SSOUserInfo } from "../types.ts";
+import { UnauthorizedException } from "../../deps.ts";
+import { CanActivate, Context, Logger, SSOUserInfo } from "../types.ts";
 import { stringify } from "../tools/utils.ts";
 
 /**
@@ -39,7 +39,11 @@ export function SSOGuard(options: {
       };
     }
 
-    async getSSO(request: any) {
+    async getSSO(
+      request: Request & {
+        userInfo?: SSOUserInfo;
+      },
+    ) {
       const headers = request.headers;
       const userInfo = await ajax.get<SSOUserInfo>("/user/userinfo", null, {
         baseURL: ssoApi || Deno.env.get("ssoApi"),
