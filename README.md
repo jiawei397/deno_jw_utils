@@ -2,17 +2,6 @@
 
 This is some private utils for my project.
 
-## a service for Redis
-
-```typescript
-import { RedisService } from "https://deno.land/x/jw_utils@v0.4.0/mod.ts";
-
-export const redisService = new RedisService({
-  hostname: "localhost",
-  port: 6379,
-});
-```
-
 ## an exception middleware for oak
 
 ```typescript
