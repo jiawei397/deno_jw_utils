@@ -1,6 +1,6 @@
 export * from "./src/tools/utils.ts";
 
-export * from "./src/guards/sso.guard.ts";
+export * from "./src/guards/mod.ts";
 
 export * from "./deps.ts";
 
