@@ -6,14 +6,14 @@ export function logTime(options: {
   msg?: string;
   logger?: Logger;
   level?: "debug" | "info" | "warn" | "error";
-} = {}) {
+} = {}): MethodDecorator {
   const { logger = console, msg, level = "debug", str = "take up time" } =
     options;
   return function (
     target: any,
-    propertyKey: string,
+    propertyKey: string | symbol,
     descriptor: PropertyDescriptor,
-  ): MethodDecorator {
+  ) {
     const originalMethod = descriptor.value;
     descriptor.value = async function (...args: any[]) {
       const start = Date.now();
@@ -21,7 +21,7 @@ export function logTime(options: {
       logger[level](
         `[${target.constructor.name}]`,
         `${
-          propertyKey +
+          (typeof propertyKey === "string" && propertyKey) +
           (msg ? ` ${msg}` : "")
         }, ${str}: ${
           (Date.now() - start) /
