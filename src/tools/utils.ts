@@ -133,3 +133,19 @@ export function checkParamKey(key: string, val: string) {
     throw new BadRequestException(`[${key}] is required`);
   }
 }
+
+/**
+ * 根据host获取一级域名
+ * @param host 正常应该是www.baidu.com，或者localhost
+ */
+export function getFirstOriginByHost(host: string): string {
+  const hostname = host.includes(":") ? host.split(":")[0] : host;
+  const arr = hostname.split(".");
+  const len = arr.length;
+  if (len === 3) { // www.baidu.com， 只处理这种3段的
+    return arr[1] + "." + arr[2];
+  } else if (len === 4) { // auth.spacex.uino.local这种
+    return arr[2] + "." + arr[3];
+  }
+  return hostname;
+}
