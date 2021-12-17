@@ -30,6 +30,5 @@ export function logTime(options: {
       );
       return result;
     };
-    return target;
   };
 }
