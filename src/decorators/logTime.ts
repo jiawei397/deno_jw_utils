@@ -19,7 +19,7 @@ export function logTime(options: {
       const start = Date.now();
       const result = await originalMethod.apply(this, args);
       logger[level](
-        `[${target.constructor.name}]`,
+        target.constructor.name,
         `${
           (typeof propertyKey === "string" && propertyKey) +
           (msg ? ` ${msg}` : "")
