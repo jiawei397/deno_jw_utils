@@ -5,7 +5,7 @@ This is some private utils for my project.
 ## an exception middleware for oak
 
 ```typescript
-import { anyExceptionFilter } from "https://deno.land/x/jw_utils@v0.4.6/mod.ts";
+import { anyExceptionFilter } from "https://deno.land/x/jw_utils@v0.4.7/mod.ts";
 import { Application } from "https://deno.land/x/oak/mod.ts";
 
 const app = new App();
