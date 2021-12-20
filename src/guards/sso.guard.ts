@@ -75,7 +75,7 @@ export function SSOGuard(options: {
         const simpleInfo = this.getSimpleUserInfo(userInfo);
         if (
           !userInfo.internal &&
-          (ssoAllowAllUsers ?? Deno.env.get("ssoAllowAllUsers") !== "true")
+          (!ssoAllowAllUsers && Deno.env.get("ssoAllowAllUsers") !== "true")
         ) { // 外来用户
           logger.error(`【sso guard】外来用户校验信息未通过：${stringify(simpleInfo)}`);
           return false;
