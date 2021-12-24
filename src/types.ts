@@ -49,11 +49,12 @@ export type Context = {
   cookies: Cookies;
 };
 
-export abstract class CanActivate {
-  constructor(...args: any[]) {}
-  canActivate(context: Context): boolean | Promise<boolean> {
-    throw new Error("Method not implemented.");
-  }
+export interface CanActivate {
+  canActivate(context: Context): boolean | Promise<boolean>;
+}
+
+export interface Guard {
+  new (...args: any[]): CanActivate;
 }
 
 export interface User {
