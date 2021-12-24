@@ -1,4 +1,4 @@
-// deno-lint-ignore-file camelcase no-explicit-any
+// deno-lint-ignore-file camelcase no-explicit-any no-unused-vars
 export type MsgCallback = (...msg: unknown[]) => unknown;
 
 export interface Logger {
@@ -49,8 +49,11 @@ export type Context = {
   cookies: Cookies;
 };
 
-export interface CanActivate {
-  canActivate(context: Context): boolean | Promise<boolean>;
+export abstract class CanActivate {
+  constructor(...args: any[]) {}
+  canActivate(context: Context): boolean | Promise<boolean> {
+    throw new Error("Method not implemented.");
+  }
 }
 
 export interface User {
