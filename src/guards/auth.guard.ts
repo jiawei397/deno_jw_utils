@@ -1,14 +1,12 @@
 // deno-lint-ignore-file no-explicit-any
 import { ajax } from "../tools/ajax.ts";
-import { UnauthorizedException } from "../../deps.ts";
 import {
-  AuthGuardOptions,
   CanActivate,
   Context,
   Request,
-  Token,
-  User,
-} from "../types.ts";
+  UnauthorizedException,
+} from "../../deps.ts";
+import { AuthGuardOptions, Token, User } from "../types.ts";
 import { getFirstOriginByHost, isDist } from "../tools/utils.ts";
 
 /**
@@ -56,7 +54,9 @@ export function AuthGuard(options: AuthGuardOptions = {}) {
 
     private async checkPrivateToken(
       headers: Headers,
-      req: Request,
+      req: Request & {
+        userInfo?: User;
+      },
     ): Promise<boolean | User> {
       const userVal = headers.get(checkUserField);
       if (!userVal) {
@@ -81,7 +81,7 @@ export function AuthGuard(options: AuthGuardOptions = {}) {
             logger.info(
               `【${AuthGuard.name}】${userVal}使用private_token校验通过！[user-agent]是${userAgent}`,
             );
-            (req as any).userInfo = result;
+            req.userInfo = result;
             return true;
           } else {
             logger.warn(
@@ -165,7 +165,7 @@ export function AuthGuard(options: AuthGuardOptions = {}) {
         if (!checked) {
           return false;
         }
-        context.request.userInfo = {
+        (context.request as any).userInfo = {
           userId: find.userId,
           username: find.username,
           token: find.id,

@@ -1,4 +1,4 @@
-// deno-lint-ignore-file camelcase no-explicit-any no-unused-vars
+// deno-lint-ignore-file camelcase
 export type MsgCallback = (...msg: unknown[]) => unknown;
 
 export interface Logger {
@@ -28,34 +28,34 @@ export interface SSOUserInfo {
 export type SSOUserKey = keyof SSOUserInfo;
 export type SSOUserKeys = SSOUserKey[];
 
-export interface Cookies {
-  set(key: string, value: string, options?: any): Promise<this>;
-  get(key: string, options?: any): Promise<string | undefined>;
-}
+// export interface Cookies {
+//   set(key: string, value: string, options?: any): Promise<this>;
+//   get(key: string, options?: any): Promise<string | undefined>;
+// }
 
-export interface Request {
-  headers: Headers;
-  cookies: Cookies;
-  userInfo?: SSOUserInfo | User | {
-    userId: string;
-    username: string;
-    token: string;
-  };
-}
+// export interface Request {
+//   headers: Headers;
+//   cookies: Cookies;
+//   userInfo?: SSOUserInfo | User | {
+//     userId: string;
+//     username: string;
+//     token: string;
+//   };
+// }
 
-export type Context = {
-  request: Request;
-  response: Response;
-  cookies: Cookies;
-};
+// export type Context = {
+//   request: Request;
+//   response: Response;
+//   cookies: Cookies;
+// };
 
-export interface CanActivate {
-  canActivate(context: Context): boolean | Promise<boolean>;
-}
+// export interface CanActivate {
+//   canActivate(context: Context): boolean | Promise<boolean>;
+// }
 
-export interface Guard {
-  new (...args: any[]): CanActivate;
-}
+// export interface Guard {
+//   new (...args: any[]): CanActivate;
+// }
 
 export interface User {
   id: string;

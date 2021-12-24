@@ -21,3 +21,9 @@ export { BaseAjax } from "https://deno.land/x/jw_fetch@v0.1.11/mod.ts";
 export type { AjaxConfig } from "https://deno.land/x/jw_fetch@v0.1.11/mod.ts";
 
 export { encode, Hash } from "https://deno.land/x/checksum@1.2.0/mod.ts";
+
+export type {
+  CanActivate,
+  Context,
+  Request,
+} from "https://deno.land/x/oak_nest@v0.9.1/mod.ts";
