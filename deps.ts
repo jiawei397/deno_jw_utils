@@ -15,7 +15,7 @@ export {
 export {
   BadRequestException,
   UnauthorizedException,
-} from "https://deno.land/x/oak_exception@v0.0.4/mod.ts";
+} from "https://deno.land/x/oak_exception@v0.0.7/mod.ts";
 
 export { BaseAjax } from "https://deno.land/x/jw_fetch@v0.1.11/mod.ts";
 export type { AjaxConfig } from "https://deno.land/x/jw_fetch@v0.1.11/mod.ts";
