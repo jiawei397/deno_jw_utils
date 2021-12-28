@@ -4,7 +4,7 @@ export * from "./src/guards/mod.ts";
 
 // export * from "./deps.ts";
 
-export * from "./src/decorators/logTime.ts";
+export * from "./src/decorators/mod.ts";
 
 export type {
   Logger,
