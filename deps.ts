@@ -24,9 +24,9 @@ export { encode, Hash } from "https://deno.land/x/checksum@1.2.0/mod.ts";
 
 export {
   createParamDecorator,
-} from "https://deno.land/x/oak_nest@v0.10.4/mod.ts";
+} from "https://deno.land/x/oak_nest@v1.0.2/mod.ts";
 export type {
   CanActivate,
   Context,
   Request,
-} from "https://deno.land/x/oak_nest@v0.10.4/mod.ts";
+} from "https://deno.land/x/oak_nest@v1.0.2/mod.ts";
