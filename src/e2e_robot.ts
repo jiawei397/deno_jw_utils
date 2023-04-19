@@ -4,8 +4,21 @@
  * 1. 要发送成功提醒：deno run -A e2e_robot.ts -S true
  * 2. 自定义信息：deno run -A e2e_robot.ts -M "消息内容"
  */
-import { parse } from "../deps.ts";
+import { ArgParsingOptions, parse } from "../deps.ts";
 import { sendMarkdownMessage } from "./utils.ts";
+
+const options: ArgParsingOptions = {
+  string: ["robotUrl", "message"],
+  boolean: ["success"],
+  alias: {
+    success: "S",
+    robotUrl: "U",
+    message: "M",
+  },
+  default: {
+    success: false,
+  },
+};
 
 function getMessage(successs: boolean) {
   const title = Deno.env.get("CI_PROJECT_TITLE")!;
@@ -23,22 +36,18 @@ function getMessage(successs: boolean) {
 
 export interface Params {
   _: string[];
-  S: boolean;
-  successs: boolean; // 是否成功
-  U?: string;
+  success: boolean; // 是否成功
   robotUrl?: string;
-  M?: string;
   message?: string; // 自定义消息
 }
 
 if (import.meta.main) {
-  const params = parse(Deno.args) as Params;
-  const robotUrl = Deno.env.get("ROBOT_URL") || params.robotUrl || params.U;
+  const params = parse(Deno.args, options) as Params;
+  const robotUrl = Deno.env.get("ROBOT_URL") || params.robotUrl;
   if (!robotUrl) {
     console.error("not find ROBOT_URL");
     Deno.exit(1);
   }
-  const successs = params.S ?? params.successs ?? false;
-  const msg = params.message || getMessage(successs);
+  const msg = params.message || getMessage(params.success);
   await sendMarkdownMessage(robotUrl, msg);
 }
