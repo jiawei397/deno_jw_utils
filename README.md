@@ -11,7 +11,7 @@ PUPPETEER_PRODUCT=chrome deno run -A --unstable https://deno.land/x/puppeteer@16
 use
 
 ```ts
-import { launch } from "https://deno.land/x/jw_utils@v1.0.2/src/puppeteer.ts";
+import { launch } from "https://deno.land/x/jw_utils@v1.0.3/src/puppeteer.ts";
 
 const browser = await launch({
   // headless: false,
