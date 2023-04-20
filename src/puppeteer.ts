@@ -2,13 +2,13 @@
 // deno run -A --unstable mod.ts
 import puppeteer, {
   Browser,
-  BrowserConnectOptions,
+  type BrowserConnectOptions,
   Page,
   Product,
 } from "https://deno.land/x/puppeteer@16.2.0/mod.ts";
 import {
-  ChromeArgOptions,
-  LaunchOptions,
+  type ChromeArgOptions,
+  type LaunchOptions,
 } from "https://deno.land/x/puppeteer@16.2.0/src/deno/LaunchOptions.ts";
 
 export const isLinux = Deno.build.os === "linux";
