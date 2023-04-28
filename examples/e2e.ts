@@ -1,5 +1,5 @@
 // API：https://pptr.dev/guides/evaluate-javascript
-import { launch } from "../src/puppeteer.ts";
+import { launch } from "../src/puppeteer/mod.ts";
 
 const browser = await launch({
   // headless: false,

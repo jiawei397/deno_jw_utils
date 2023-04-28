@@ -4,7 +4,7 @@
  * 1. 要发送成功提醒：deno run -A e2e_robot.ts -S true
  * 2. 自定义信息：deno run -A e2e_robot.ts -M "消息内容"
  */
-import { ArgParsingOptions, parse } from "../deps.ts";
+import { ArgParsingOptions, parse } from "./deps.ts";
 import { sendMarkdownMessage } from "./utils.ts";
 
 const options: ArgParsingOptions = {

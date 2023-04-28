@@ -3,6 +3,7 @@
   "version": "1.0.3",
   "lock": false,
   "tasks": {
-    "e2e": "deno run -A examples/e2e.ts"
+    "e2e": "deno run -A examples/e2e.ts",
+    "check": "deno run -A examples/check.ts"
   }
 }

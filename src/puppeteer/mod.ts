@@ -1,15 +1,11 @@
 // PUPPETEER_PRODUCT=chrome deno run -A --unstable https://deno.land/x/puppeteer@16.2.0/install.ts
 // deno run -A --unstable mod.ts
 import puppeteer, {
-  Browser,
-  type BrowserConnectOptions,
-  Page,
-  Product,
-} from "https://deno.land/x/puppeteer@16.2.0/mod.ts";
-import {
+  BrowserConnectOptions,
   type ChromeArgOptions,
   type LaunchOptions,
-} from "https://deno.land/x/puppeteer@16.2.0/src/deno/LaunchOptions.ts";
+  Product,
+} from "./deps.ts";
 
 export const isLinux = Deno.build.os === "linux";
 export const defaultArgs = isLinux
@@ -36,11 +32,4 @@ export function launch(options: LaunchParams = {}) {
   });
 }
 
-export {
-  Browser,
-  type BrowserConnectOptions,
-  type ChromeArgOptions,
-  type LaunchOptions,
-  Page,
-};
-export default puppeteer;
+export * from "./deps.ts";
