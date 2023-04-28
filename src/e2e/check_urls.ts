@@ -43,7 +43,7 @@ export class CheckUrlTask {
     url: string,
     parentUrl?: string,
   ) {
-    if (url.startsWith("/")) {
+    if (url.startsWith("/") && !url.startsWith("//")) {
       if (this.baseURL.endsWith("/")) {
         url = this.baseURL + url.substring(1);
       } else {
