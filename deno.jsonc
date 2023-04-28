@@ -1,6 +1,6 @@
 {
   "name": "jw_utils",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "lock": false,
   "tasks": {
     "e2e": "deno run -A examples/e2e.ts",

@@ -11,7 +11,7 @@ PUPPETEER_PRODUCT=chrome deno run -A --unstable https://deno.land/x/puppeteer@16
 样例：
 
 ```ts
-import { launch } from "https://deno.land/x/jw_utils@v1.1.0/src/puppeteer/mod.ts";
+import { launch } from "https://deno.land/x/jw_utils@v1.1.1/src/puppeteer/mod.ts";
 
 const browser = await launch({
   // headless: false,
@@ -34,13 +34,13 @@ console.info("E2E sucessfully end");
 默认失败通知：
 
 ```bash
-deno run -A https://deno.land/x/jw_utils@v1.1.0/src/robot/mod.ts
+deno run -A https://deno.land/x/jw_utils@v1.1.1/src/robot/mod.ts
 ```
 
 如果要成功通知：
 
 ```bash
-deno run -A https://deno.land/x/jw_utils@v1.1.0/src/robot/mod.ts -S
+deno run -A https://deno.land/x/jw_utils@v1.1.1/src/robot/mod.ts -S
 ```
 
 支持以下命令行参数：
