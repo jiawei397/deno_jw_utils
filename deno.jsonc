@@ -4,6 +4,7 @@
   "lock": false,
   "tasks": {
     "e2e": "deno run -A examples/e2e.ts",
-    "check": "deno run -A examples/check.ts"
+    "check": "deno run -A examples/check.ts",
+    "check_url": "deno run -A examples/check_url.ts"
   }
 }
