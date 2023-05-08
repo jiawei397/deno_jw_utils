@@ -1,1 +1,1 @@
-export { default as cheerio } from "npm:cheerio@0.22.0";
+export { default as cheerio } from "https://esm.sh/cheerio@1.0.0-rc.12";
