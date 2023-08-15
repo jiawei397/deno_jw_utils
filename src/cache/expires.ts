@@ -7,15 +7,15 @@
 
 function getCurrentAge(date: Date, age: number) {
   const response_time = new Date();
-  let apparent_age = Math.max(
+  const apparent_age = Math.max(
     0,
     (response_time.getTime() - date.getTime()) / 1000,
   );
-  let response_delay = 0;
-  let corrected_age_value = age + response_delay;
-  let corrected_initial_age = Math.max(apparent_age, corrected_age_value);
-  let resident_time = 0;
-  let current_age = corrected_initial_age + resident_time;
+  const response_delay = 0;
+  const corrected_age_value = age + response_delay;
+  const corrected_initial_age = Math.max(apparent_age, corrected_age_value);
+  const resident_time = 0;
+  const current_age = corrected_initial_age + resident_time;
   return current_age;
 }
 
@@ -46,22 +46,6 @@ export function getExpiredTime(
   now.setSeconds(now.getSeconds() + expiredSeconds);
   return now.toLocaleString("zh-CN", { hour12: false });
 }
-
-// const date = "Fri, 11 Aug 2023 09:16:35 GMT";
-// const lastModified = "Thu, 10 Aug 2023 06:18:28 GMT";
-// const age = 0; //1759;
-// // console.log(isCurrentInCache(date, lastModified, age));
-// console.log(getExpiredTime(date, lastModified, age));
-
-// const date = "Fri, 11 Aug 2023 10:12:54 GMT";
-// const lastModified = "Thu, 10 Aug 2023 06:50:20 GMT";
-// const age = 864;
-// console.log(getExpiredTime(date, lastModified, age));
-
-// const date = "Fri, 11 Aug 2023 04:28:58 GMT";
-// const lastModified = "Thu, 10 Aug 2023 06:50:20 GMT";
-// const age = 1527;
-// console.log(getExpiredTime(date, lastModified, age));
 
 export async function getCDNExpiredTime(url: string) {
   const res = await fetch(url);
